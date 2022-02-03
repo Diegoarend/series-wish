@@ -19,29 +19,31 @@ export const ActionSetToken = ({ commit }, payload) => {
   commit(types.SET_TOKEN, payload)
 }
 
-// export const ActionCheckToken = ({ dispatch, state }) => {
-//   if(state.token) {
-//     return Promise.resolve(state.token)
-//   }
+export const ActionCheckToken = ({ dispatch, state }) => {
+  if(state.token) {
+    return Promise.resolve(state.token)
+  }
 
-//   const token=storage.getLocalToken()
+  const token=storage.getLocalToken()
 
-//   if (!token) {
-//     return Promise.reject(new Error('Token inválido'))
-//   }
+  if (!token) {
+    return Promise.reject(new Error('Token inválido'))
+  }
 
-//   dispatch('ActionSetToken',token)
-//   return dispatch('ActionLoadSession')
-// }
+  dispatch('ActionSetToken',token)
+  return dispatch('ActionLoadSession')
+}
 
-// export const ActionLoadSession = ({ dispatch }) => {
-//   return new Promise ( async (resolve,reject) => {
-//     try {
-//       const { data: { user} } = await services.auth.loadSession
-//     } catch (err) {
-//       dispatch('ActionSignOut')
-//       reject(err)
-//     }   
-//   })
-// }
+export const ActionLoadSession = ({ dispatch }) => {
+  return new Promise ( async (resolve,reject) => {
+    try {
+      const { data: { user} } = await services.auth.loadSession()
+      dispatch('ActionSetUser',user)
+    } catch (err) {
+      console.log(err)
+      dispatch('ActionSignOut')
+      reject(err)
+    }   
+  })
+}
 

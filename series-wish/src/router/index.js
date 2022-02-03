@@ -1,14 +1,12 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
 import routes from './routes'
+import Router from 'vue-router'
+import beforeEach from './beforeEach'
+
+Vue.use(Router)
 
 
-Vue.use(VueRouter)
+const router = new Router({ routes })
 
-
-
-
-
-export default new VueRouter({
-  routes
-})
+router.beforeEach(beforeEach)
+export default router
