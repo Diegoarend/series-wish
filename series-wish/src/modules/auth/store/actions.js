@@ -46,4 +46,15 @@ export const ActionLoadSession = ({ dispatch }) => {
     }   
   })
 }
+export const ActionSignOut = ({ dispatch }) => {
+  return new Promise ( async (resolve,reject) => {
+    try {
+      //
+    } catch (err) {
+      console.log(err)
+      //dispatch('ActionSignOut')
+      reject(err)
+    }   
+  })
+}
 

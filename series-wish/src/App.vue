@@ -1,9 +1,25 @@
 <template>
-  <div id="app">  
-    <router-view />   
+  <div id="app">
+    <layout-navbar v-if="showNavbar" />
+
+    <router-view />
   </div>
 </template>
 
-<style lang="scss">
+<script>
+import LayoutNavbar from './components/layout/LayoutNavbar'
+export default {
+  components: {
+    LayoutNavbar
+  },
+  computed: {
+    showNavbar () {
+      return this.$route.name !== 'home' && this.$route.name !== 'login'
+    }
+  }
+}
+</script>
 
+<style lang="scss">
 </style>
+
