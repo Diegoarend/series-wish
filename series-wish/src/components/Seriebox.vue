@@ -1,7 +1,7 @@
 <template>
   <router-link
     class="card mb-4"
-    :to="{ name: 'show-serie', params: { id: serie.id } }"
+    :to="{ name: 'showserie', params: { id: serie.id } }"
   >
     <img
       height="400px"
